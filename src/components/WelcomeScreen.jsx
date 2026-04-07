@@ -24,7 +24,7 @@ export default function WelcomeScreen() {
         style={{
           width: "400px", height: "400px", borderRadius: "50%",
           border: "1px solid rgba(196, 132, 45, 0.2)",
-          top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+          top: "50%", left: "50%", x: "-50%", y: "-50%",
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -34,7 +34,7 @@ export default function WelcomeScreen() {
         style={{
           width: "500px", height: "500px", borderRadius: "50%",
           border: "1px solid rgba(245, 214, 138, 0.15)",
-          top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+          top: "50%", left: "50%", x: "-50%", y: "-50%",
         }}
         animate={{ rotate: -360 }}
         transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
