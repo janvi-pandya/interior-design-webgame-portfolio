@@ -12,17 +12,18 @@ export default function UnboxButton({ position, onClick, label }) {
         }}
         className="px-4 py-2 rounded-full text-sm font-semibold cursor-pointer border-none whitespace-nowrap"
         style={{
-          background: "linear-gradient(135deg, #CFC8FF, #F6C9D6)",
-          color: "white",
-          boxShadow: "0 4px 16px rgba(207, 200, 255, 0.4)",
+          background: "linear-gradient(135deg, #C4842D, #E8A838)",
+          color: "#FFF8F0",
+          boxShadow: "0 4px 16px rgba(196, 132, 45, 0.5)",
           fontFamily: "'Quicksand', sans-serif",
+          border: "1px solid rgba(245, 214, 138, 0.4)",
         }}
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.1, 1] }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        📦 {label}
+        🎁 {label}
       </motion.button>
     </Html>
   );
