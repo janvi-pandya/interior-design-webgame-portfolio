@@ -8,6 +8,8 @@ export function GameProvider({ children }) {
   const [unboxedItems, setUnboxedItems] = useState(new Set());
   const [activePanel, setActivePanel] = useState(null);
   const [currentBoxIndex, setCurrentBoxIndex] = useState(0);
+  const [furniturePositions, setFurniturePositions] = useState({});
+  const [showPlacementHint, setShowPlacementHint] = useState(null);
 
   const progress = (unboxedItems.size / objectOrder.length) * 100;
   const isComplete = unboxedItems.size === objectOrder.length;
@@ -33,6 +35,12 @@ export function GameProvider({ children }) {
     [currentBoxIndex]
   );
 
+  const skipToFinished = useCallback(() => {
+    const allItems = new Set(objectOrder);
+    setUnboxedItems(allItems);
+    setCurrentBoxIndex(objectOrder.length);
+  }, []);
+
   const closePanel = useCallback(() => {
     setActivePanel(null);
   }, []);
@@ -40,6 +48,17 @@ export function GameProvider({ children }) {
   const isUnboxed = useCallback(
     (itemId) => unboxedItems.has(itemId),
     [unboxedItems]
+  );
+
+  const moveFurniture = useCallback((itemId, newPosition) => {
+    setFurniturePositions((prev) => ({ ...prev, [itemId]: newPosition }));
+    setShowPlacementHint(itemId);
+    setTimeout(() => setShowPlacementHint(null), 2000);
+  }, []);
+
+  const getFurniturePosition = useCallback(
+    (itemId) => furniturePositions[itemId] || null,
+    [furniturePositions]
   );
 
   return (
@@ -57,6 +76,10 @@ export function GameProvider({ children }) {
         isUnboxed,
         nextItem,
         currentBoxIndex,
+        skipToFinished,
+        moveFurniture,
+        getFurniturePosition,
+        showPlacementHint,
       }}
     >
       {children}

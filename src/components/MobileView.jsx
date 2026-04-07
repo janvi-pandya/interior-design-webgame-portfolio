@@ -1,16 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useGame } from "../context/GameContext";
-import { portfolioData, objectOrder } from "../data/portfolio";
-
-const objectLabels = {
-  laptop: { emoji: "💻", name: "Laptop" },
-  bookshelf: { emoji: "📚", name: "Bookshelf" },
-  coffeeTable: { emoji: "☕", name: "Coffee Table" },
-  wardrobe: { emoji: "🗄️", name: "Wardrobe" },
-  plant: { emoji: "🌿", name: "Plant" },
-  window: { emoji: "🪟", name: "Window" },
-};
+import { portfolioData, objectOrder, objectLabels } from "../data/portfolio";
 
 function MobileCard({ id, index }) {
   const { isUnboxed, unboxItem, setActivePanel, nextItem } = useGame();
@@ -33,10 +24,10 @@ function MobileCard({ id, index }) {
           onClick={() => setActivePanel(id)}
           className="w-full p-5 rounded-2xl text-left cursor-pointer border-none"
           style={{
-            background: "rgba(255, 255, 255, 0.7)",
+            background: "rgba(255, 248, 240, 0.9)",
             backdropFilter: "blur(10px)",
-            boxShadow: "0 4px 20px rgba(207, 200, 255, 0.2)",
-            border: "1px solid rgba(207, 200, 255, 0.3)",
+            boxShadow: "0 4px 20px rgba(26, 122, 122, 0.1)",
+            border: "1px solid rgba(196, 132, 45, 0.2)",
           }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -44,14 +35,14 @@ function MobileCard({ id, index }) {
           <div className="flex items-center gap-3">
             <span className="text-3xl">{label.emoji}</span>
             <div>
-              <h3 className="text-base font-bold" style={{ color: "#4a3f5c", fontFamily: "'Quicksand', sans-serif" }}>
+              <h3 className="text-base font-bold" style={{ color: "#1A7A7A", fontFamily: "'Quicksand', sans-serif" }}>
                 {data.title}
               </h3>
-              <p className="text-xs" style={{ color: "#7a6b8a" }}>
+              <p className="text-xs" style={{ color: "#C4842D" }}>
                 {data.subtitle}
               </p>
             </div>
-            <span className="ml-auto text-lg" style={{ color: "#CFC8FF" }}>→</span>
+            <span className="ml-auto text-lg" style={{ color: "#C4842D" }}>→</span>
           </div>
         </motion.button>
       ) : (
@@ -59,17 +50,17 @@ function MobileCard({ id, index }) {
           onClick={() => unboxItem(id)}
           className="w-full p-5 rounded-2xl text-center cursor-pointer border-none"
           style={{
-            background: "linear-gradient(135deg, rgba(207, 200, 255, 0.3), rgba(246, 201, 214, 0.3))",
-            border: "2px dashed rgba(207, 200, 255, 0.5)",
+            background: "linear-gradient(135deg, rgba(26, 122, 122, 0.15), rgba(196, 132, 45, 0.15))",
+            border: "2px dashed rgba(196, 132, 45, 0.4)",
           }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          animate={{ boxShadow: ["0 0 20px rgba(207, 200, 255, 0.2)", "0 0 30px rgba(207, 200, 255, 0.4)", "0 0 20px rgba(207, 200, 255, 0.2)"] }}
+          animate={{ boxShadow: ["0 0 20px rgba(196, 132, 45, 0.1)", "0 0 30px rgba(196, 132, 45, 0.3)", "0 0 20px rgba(196, 132, 45, 0.1)"] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl">📦</span>
-            <span className="font-semibold" style={{ color: "#4a3f5c", fontFamily: "'Quicksand', sans-serif" }}>
+            <span className="text-2xl">🎁</span>
+            <span className="font-semibold" style={{ color: "#1A7A7A", fontFamily: "'Quicksand', sans-serif" }}>
               Unbox {label.name}
             </span>
           </div>
@@ -80,44 +71,61 @@ function MobileCard({ id, index }) {
 }
 
 export default function MobileView() {
-  const { progress, isComplete } = useGame();
+  const { progress, isComplete, skipToFinished } = useGame();
 
   return (
     <div
       className="min-h-screen p-4 pb-20 overflow-y-auto"
-      style={{ background: "linear-gradient(180deg, #FFF4E6 0%, #E8E0FF 100%)" }}
+      style={{ background: "linear-gradient(180deg, #0D4F4F 0%, #1A5555 50%, #2A4A5A 100%)" }}
     >
       {/* Header */}
       <div className="text-center mb-6 pt-2">
         <h1
           className="text-2xl font-bold mb-1"
-          style={{ color: "#4a3f5c", fontFamily: "'Quicksand', sans-serif" }}
+          style={{ color: "#F5D68A", fontFamily: "'Quicksand', sans-serif" }}
         >
-          🏠 My Dream Room
+          🪷 Janvi&apos;s Room
         </h1>
-        <p className="text-sm" style={{ color: "#7a6b8a" }}>
+        <p className="text-sm" style={{ color: "#FFD699" }}>
           Tap to unbox and explore
         </p>
       </div>
 
       {/* Progress */}
-      <div className="mb-6 px-2">
+      <div className="mb-4 px-2">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-semibold" style={{ color: "#4a3f5c" }}>
+          <span className="text-xs font-semibold" style={{ color: "#F5D68A" }}>
             {Math.round(progress)}%
           </span>
           <div
             className="flex-1 h-2 rounded-full overflow-hidden"
-            style={{ background: "rgba(207, 200, 255, 0.3)" }}
+            style={{ background: "rgba(26, 122, 122, 0.3)" }}
           >
             <motion.div
               className="h-full rounded-full"
-              style={{ background: "linear-gradient(90deg, #CFC8FF, #F6C9D6)" }}
+              style={{ background: "linear-gradient(90deg, #1A7A7A, #C4842D, #D4488E)" }}
               animate={{ width: `${progress}%` }}
             />
           </div>
         </div>
       </div>
+
+      {/* Skip button */}
+      {!isComplete && (
+        <div className="text-center mb-4">
+          <button
+            onClick={skipToFinished}
+            className="text-xs px-4 py-1.5 rounded-full cursor-pointer font-semibold"
+            style={{
+              background: "rgba(196, 132, 45, 0.2)",
+              border: "1px solid rgba(196, 132, 45, 0.4)",
+              color: "#F5D68A",
+            }}
+          >
+            Skip to Finished Room →
+          </button>
+        </div>
+      )}
 
       {/* Cards */}
       <div className="space-y-3">
@@ -132,8 +140,8 @@ export default function MobileView() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <p className="text-lg font-bold" style={{ color: "#4a3f5c" }}>
-            ✨ Thanks for exploring my world! ✨
+          <p className="text-lg font-bold" style={{ color: "#F5D68A" }}>
+            Thanks for exploring my world!
           </p>
         </motion.div>
       )}

@@ -8,21 +8,21 @@ export default function Scene() {
     <Canvas
       shadows
       camera={{
-        position: [8, 8, 8],
-        fov: 45,
+        position: [10, 9, 10],
+        fov: 42,
         near: 0.1,
         far: 100,
       }}
-      style={{ background: "linear-gradient(180deg, #E8E0FF 0%, #FFF4E6 100%)" }}
+      style={{ background: "linear-gradient(180deg, #0D3D3D 0%, #1A5555 40%, #2A4A5A 100%)" }}
     >
-      {/* Ambient light for soft fill */}
-      <ambientLight intensity={0.6} color="#FFF4E6" />
+      {/* Warm ambient fill — golden hour feel */}
+      <ambientLight intensity={0.5} color="#FFE8CC" />
 
-      {/* Main directional light - warm sunlight */}
+      {/* Main directional — warm golden sunlight */}
       <directionalLight
-        position={[5, 8, 5]}
-        intensity={0.8}
-        color="#FFE4CC"
+        position={[6, 10, 6]}
+        intensity={0.9}
+        color="#FFD699"
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -33,18 +33,21 @@ export default function Scene() {
         shadow-camera-bottom={-10}
       />
 
-      {/* Soft fill light from the other side */}
+      {/* Cool fill light — subtle teal */}
       <directionalLight
-        position={[-3, 5, -3]}
-        intensity={0.3}
-        color="#CFC8FF"
+        position={[-4, 6, -4]}
+        intensity={0.25}
+        color="#1A7A7A"
       />
 
-      {/* Point light for cozy glow */}
-      <pointLight position={[0, 4, 0]} intensity={0.4} color="#FFD6C9" distance={12} />
+      {/* Warm point light — room center glow */}
+      <pointLight position={[0, 5, 0]} intensity={0.5} color="#FFD699" distance={14} />
 
-      {/* Subtle accent light */}
-      <pointLight position={[-4, 2, 2]} intensity={0.2} color="#CDE7FF" distance={8} />
+      {/* Accent light — magenta warmth */}
+      <pointLight position={[-4, 2, 2]} intensity={0.2} color="#D4488E" distance={8} />
+
+      {/* Brass lamp glow */}
+      <pointLight position={[4, 3, -5]} intensity={0.15} color="#E8A838" distance={6} />
 
       <Room />
       <InteractiveObjects />
@@ -52,15 +55,15 @@ export default function Scene() {
       <OrbitControls
         enablePan={false}
         enableZoom={true}
-        minDistance={6}
-        maxDistance={18}
+        minDistance={8}
+        maxDistance={22}
         minPolarAngle={Math.PI / 6}
         maxPolarAngle={Math.PI / 2.5}
         minAzimuthAngle={-Math.PI / 4}
         maxAzimuthAngle={Math.PI / 4}
-        target={[0, 2, 0]}
+        target={[0, 2.5, 0]}
         autoRotate
-        autoRotateSpeed={0.3}
+        autoRotateSpeed={0.25}
       />
     </Canvas>
   );

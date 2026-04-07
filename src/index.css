@@ -10,7 +10,7 @@
 body {
   font-family: 'Quicksand', sans-serif;
   overflow: hidden;
-  background: #FFF4E6;
+  background: #0D3D3D;
 }
 
 #root {
@@ -34,8 +34,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(207, 200, 255, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(207, 200, 255, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(196, 132, 45, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(196, 132, 45, 0.6); }
 }
 
 .animate-float {
@@ -58,9 +58,9 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(255, 244, 230, 0.5);
+  background: rgba(26, 42, 68, 0.5);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CFC8FF;
+  background: #C4842D;
   border-radius: 3px;
 }
