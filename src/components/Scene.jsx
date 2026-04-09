@@ -2,14 +2,17 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Room from "./Room";
 import InteractiveObjects from "./InteractiveObjects";
+import { useGame } from "../context/GameContext";
 
-export default function Scene() {
+export default function Scene({ variant = "desktop" }) {
+  const { isDragging } = useGame();
+  const isMobile = variant === "mobile";
   return (
     <Canvas
       shadows
       camera={{
-        position: [8, 8, 8],
-        fov: 45,
+        position: isMobile ? [7, 7.5, 7] : [8, 8, 8],
+        fov: isMobile ? 52 : 45,
         near: 0.1,
         far: 100,
       }}
@@ -50,17 +53,20 @@ export default function Scene() {
       <InteractiveObjects />
 
       <OrbitControls
+        enabled={!isDragging}
         enablePan={false}
         enableZoom={true}
-        minDistance={6}
-        maxDistance={18}
+        minDistance={isMobile ? 5.5 : 6}
+        maxDistance={isMobile ? 16 : 18}
         minPolarAngle={Math.PI / 6}
-        maxPolarAngle={Math.PI / 2.5}
-        minAzimuthAngle={-Math.PI / 4}
-        maxAzimuthAngle={Math.PI / 4}
+        maxPolarAngle={isMobile ? Math.PI / 2.15 : Math.PI / 2.5}
+        minAzimuthAngle={-Infinity}
+        maxAzimuthAngle={Infinity}
         target={[0, 2, 0]}
-        autoRotate
-        autoRotateSpeed={0.3}
+        autoRotate={!isDragging && !isMobile}
+        autoRotateSpeed={0.25}
+        enableDamping
+        dampingFactor={0.08}
       />
     </Canvas>
   );

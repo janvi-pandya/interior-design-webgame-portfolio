@@ -183,6 +183,30 @@ function WindowContent({ data }) {
   );
 }
 
+function DiwanBedContent({ data }) {
+  return (
+    <div className="space-y-3">
+      {data.content.items.map((it) => (
+        <div
+          key={it.name}
+          className="p-3 rounded-xl"
+          style={{
+            background: "rgba(207, 200, 255, 0.1)",
+            border: "1px solid rgba(207, 200, 255, 0.22)",
+          }}
+        >
+          <h4 className="text-sm font-bold mb-1" style={{ color: "#4a3f5c" }}>
+            {it.name}
+          </h4>
+          <p className="text-xs" style={{ color: "#7a6b8a" }}>
+            {it.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const contentRenderers = {
   laptop: LaptopContent,
   bookshelf: BookshelfContent,
@@ -190,6 +214,7 @@ const contentRenderers = {
   wardrobe: WardrobeContent,
   plant: PlantContent,
   window: WindowContent,
+  diwanBed: DiwanBedContent,
 };
 
 export default function ContentPanel() {

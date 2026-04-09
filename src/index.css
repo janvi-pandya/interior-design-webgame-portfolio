@@ -18,6 +18,54 @@ body {
   height: 100vh;
 }
 
+.portfolio-label {
+  user-select: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 14px;
+  min-width: 190px;
+  max-width: 240px;
+  background: rgba(255, 244, 230, 0.75);
+  border: 1px solid rgba(74, 63, 92, 0.18);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 34px rgba(74, 63, 92, 0.16);
+}
+
+.portfolio-label__title {
+  font-weight: 800;
+  color: #4a3f5c;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.portfolio-label__subtitle {
+  margin-top: 2px;
+  font-weight: 700;
+  color: #7a6b8a;
+  font-size: 11px;
+}
+
+.portfolio-label__hint {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 10px;
+  color: rgba(74, 63, 92, 0.72);
+  opacity: 0.9;
+}
+
+.snap-hint {
+  user-select: none;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(207, 200, 255, 0.45);
+  border: 1px solid rgba(207, 200, 255, 0.8);
+  color: #4a3f5c;
+  font-weight: 800;
+  font-size: 11px;
+  box-shadow: 0 10px 30px rgba(207, 200, 255, 0.25);
+  white-space: nowrap;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }

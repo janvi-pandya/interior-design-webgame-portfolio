@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useGame } from "../context/GameContext";
 import { portfolioData, objectOrder } from "../data/portfolio";
+import Scene from "./Scene";
 
 const objectLabels = {
   laptop: { emoji: "💻", name: "Laptop" },
@@ -10,6 +11,7 @@ const objectLabels = {
   wardrobe: { emoji: "🗄️", name: "Wardrobe" },
   plant: { emoji: "🌿", name: "Plant" },
   window: { emoji: "🪟", name: "Window" },
+  diwanBed: { emoji: "🛏️", name: "Diwan Bed" },
 };
 
 function MobileCard({ id, index }) {
@@ -83,60 +85,47 @@ export default function MobileView() {
   const { progress, isComplete } = useGame();
 
   return (
-    <div
-      className="min-h-screen p-4 pb-20 overflow-y-auto"
-      style={{ background: "linear-gradient(180deg, #FFF4E6 0%, #E8E0FF 100%)" }}
-    >
-      {/* Header */}
-      <div className="text-center mb-6 pt-2">
-        <h1
-          className="text-2xl font-bold mb-1"
-          style={{ color: "#4a3f5c", fontFamily: "'Quicksand', sans-serif" }}
-        >
-          🏠 My Dream Room
-        </h1>
-        <p className="text-sm" style={{ color: "#7a6b8a" }}>
-          Tap to unbox and explore
-        </p>
+    <div className="w-full h-screen flex flex-col">
+      {/* 3D Room (responsive) */}
+      <div className="flex-1 w-full">
+        <Scene variant="mobile" />
       </div>
 
-      {/* Progress */}
-      <div className="mb-6 px-2">
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-semibold" style={{ color: "#4a3f5c" }}>
-            {Math.round(progress)}%
-          </span>
-          <div
-            className="flex-1 h-2 rounded-full overflow-hidden"
-            style={{ background: "rgba(207, 200, 255, 0.3)" }}
-          >
-            <motion.div
-              className="h-full rounded-full"
-              style={{ background: "linear-gradient(90deg, #CFC8FF, #F6C9D6)" }}
-              animate={{ width: `${progress}%` }}
-            />
+      {/* Bottom sheet controls */}
+      <div
+        className="w-full px-4 pt-3 pb-6 overflow-y-auto"
+        style={{
+          background: "rgba(255, 244, 230, 0.92)",
+          backdropFilter: "blur(16px)",
+          borderTop: "1px solid rgba(74, 63, 92, 0.12)",
+          maxHeight: "42vh",
+        }}
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div>
+            <div className="text-sm font-extrabold" style={{ color: "#4a3f5c" }}>
+              Build the room
+            </div>
+            <div className="text-xs font-semibold" style={{ color: "#7a6b8a" }}>
+              Unbox → drag items onto the shadow to place • {Math.round(progress)}%
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Cards */}
-      <div className="space-y-3">
-        {objectOrder.map((id, i) => (
-          <MobileCard key={id} id={id} index={i} />
-        ))}
-      </div>
+        <div className="space-y-3">
+          {objectOrder.map((id, i) => (
+            <MobileCard key={id} id={id} index={i} />
+          ))}
+        </div>
 
-      {isComplete && (
-        <motion.div
-          className="text-center mt-8 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          <p className="text-lg font-bold" style={{ color: "#4a3f5c" }}>
-            ✨ Thanks for exploring my world! ✨
-          </p>
-        </motion.div>
-      )}
+        {isComplete && (
+          <motion.div className="text-center mt-5 p-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <p className="text-base font-extrabold" style={{ color: "#4a3f5c" }}>
+              ✨ Finished! Thanks for exploring. ✨
+            </p>
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 }
